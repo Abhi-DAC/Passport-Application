@@ -5,767 +5,822 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passport Application</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-
-
     <style>
         /* Custom Styles */
+        body {
+            overflow-x: hidden;
+        }
+        .navbar-custom {
+            background-color: #343a40;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9fafa;
+        }
+        .footer-custom {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .card-custom {
+            margin-bottom: 20px;
+        }
         .custom-bg {
-          background-color: #f8f9fa; /* Light Gray Background */
+            background-color: #343a40; /* Dark Gray Background */
         }
         .custom-title {
-          color: #007bff; /* Bootstrap Primary Color */
+            color: #007bff; /* Bootstrap Primary Color */
+
         }
-
-
-        .front {
-            position: fixed;
-            display: none;
-            width: 90%;
-            max-width: 500px;
-            
-            top: 50%;
-            left: 50%;
-            background-color: rgb(217, 207, 207);
+        .navbar, .content, .footer {
+            color: #ffffff; /* White text */
+        }
+       
+        .content {
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(7, 7, 7, 0.5);
-            transform: translate(-50%, -50%);
-            z-index: 1050;
-        
+            background-color: #ffffff; 
+        }
+        .sidebar {
+            min-height: 100vh; /* Full page height */
+        }
+        .footer {
+            background-color: #cfd4da; /* Dark Gray Background */
+            text-align: center; 
+            padding: 10px 0;
+            color: black;
         }
 
-        .backdrop {
-             display: none;
-            position: fixed;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(12, 12, 12, 0.8);
-            top: 1em;
-            /* z-index: 1040;   */
-        }
-
-      
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-        .form-section {
-            display: none;
-        }
         .form-section.active {
             display: block;
         }
-        .form-navigation {
-            margin-top: 20px;
-        }
+
         .form-navigation button {
             padding: 10px 20px;
             margin-right: 10px;
         }
-    </style>
 
+
+        .form-navigation {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .form-section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        label,b, p{
+            color: black;
+        }
+     
+
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                display: block !important;
+            }
+            .content {
+                margin-left: 2px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div >
-         <!-- Top navigation-->
-        <nav class="navbar navbar-expand-lg border-bottom bg-secondary" >
-            <div class="container-fluid">
-                <!-- Logo -->
-                <a class="navbar-brand ps-4" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16" style="color: black;">
-                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
-                    </svg>
-                </a>
-                
-                <!-- Menu -->
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a class="nav-link text-dark" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#!">Contact Us</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <!-- <a class="dropdown-item" href="#!">Profile</a>
-                                <a class="dropdown-item" href="#!">Setting</a> -->
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" id="login">Login</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
- 
-        <div class="d-flex" style="height:100vh">
-            <!-- Sidebar-->
-            <div class="border-end h-100 col-md-3 bg-secondary">
-                <div class="list-group list-group-flush bg-dark">
-                    <a class="list-group-item list-group-item-action list-group-item-dark px-5" href="register.html">New User Registration</a>
-                    <!-- <a class="list-group-item list-group-item-action list-group-item-dark px-5" href="Figure.html">Existing User Login </a> -->
-                    <a class="list-group-item list-group-item-action list-group-item-dark px-5" href="list.html">Check Appointment Availability</a>
-                    <a class="list-group-item list-group-item-action list-group-item-dark px-5" href="Table.html">Track Application Status</a>
-                </div>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom custom-bg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
+                </svg>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item active"><a class="nav-link" href="home.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-usl.html">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="new_passport.html" id="new_passport">New Passport Application</a>
+                            <a class="dropdown-item" href="renewal_passport.html" id="renewal_passport">Renewal of Passport</a>
+                            <a class="dropdown-item" href="History.html" id="history">History</a>
+                            <a class="dropdown-item" href="#!" id="appointment_availability">Check Appointment Availability</a>
+                            <a class="dropdown-item" href="#!" id="application_status">Track Application Status</a>
+                            <a class="dropdown-item" href="index.html" id="login">Logout</a>
 
-            <!-- Page content wrapper-->
-            <div class="col-lg-9 col-md-8 p-4">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex flex-column flex-grow-1">
+        <div class="wrapper flex-grow-1">
+        <!-- Main content -->
+            <div class="content flex-grow-1">
                 <div class="container">
-                    <h2 class="text-primary text-center mb-4">New Passport Application Form!</h2>
-                    <form action="payment.html" method="post" id="passportForm">
+                <h2 class="text-primary text-center">New Passport Application Form!</h2>
+                <form action="payment.html" method="post" id="passportForm">
 
-                        <div class="form-section active" id="section1">
-                            <fieldset>
-                                <legend><b>1. Service Required</b></legend>
-                                <label><b>1.4 Type of Application:</b></label>
-                                <label>
-                                    <input type="radio" name="application_type" value="normal"> Normal
-                                </label>
-                                <label>
-                                    <input type="radio" name="application_type" value="tatkaal"> Tatkaal
-                                </label>
-                                <br>
-                                <br>
-                    
-                                <div>
-                                    <label><b>1.5 Type of Passport Booklet:</b></label>
-                                    <select name="passport_booklet_type">
-                                        <option value="36_pages">36 Pages</option>
-                                        <option value="60_pages">60 Pages</option>
-                                    </select>
-                                </div>
-                                <br>
-                    
-                                <div>
-                                    <label><b>1.6 Validity Required:</b></label>
-                                    <select name="validity_required">
-                                        <option value="10_years">10 Years</option>
-                                        <option value="up_to_age_18">Up to age 18 (For minors between 15 and 18 years)</option>
-                                    </select>
-                                </div>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="nextSection('section1', 'section2')">Next</button>
-                                </div>
-                            </fieldset>
+                    <div class="row justify-content-center">
+                        <div class=" col-lg-8 col-md-10">
+                            <div class="form-section active card shadow" id="section1">
+                                <fieldset>
+                                    <legend><b>1. Service Required</b></legend>
+                                    <div class="form-group">
+                                        <label><b>1.4 Type of Application:</b></label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="application_type" id="normal" value="normal">
+                                            <label class="form-check-label" for="normal">Normal</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="application_type" id="tatkaal" value="tatkaal">
+                                            <label class="form-check-label" for="tatkaal">Tatkaal</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passport_booklet_type"><b>1.5 Type of Passport Booklet:</b></label>
+                                        <select class="form-control" id="passport_booklet_type" name="passport_booklet_type">
+                                            <option value="36_pages">36 Pages</option>
+                                            <option value="60_pages">60 Pages</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="validity_required"><b>1.6 Validity Required:</b></label>
+                                        <select class="form-control" id="validity_required" name="validity_required">
+                                            <option value="10_years">10 Years</option>
+                                            <option value="up_to_age_18">Up to age 18 (For minors between 15 and 18 years)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section1', 'section2')">Next</button>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
-                        <div class="form-section" id="section2">
-                            <fieldset>
-                                <legend><b>2. Applicant Details</b></legend>
-                                <br>
-                                <label>
-                                    <b>2.1 Given Name:</b>
-                                    <input type="text" name="given_name" required min="1" max="45" size="45"><br>
-                                    <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
-                                </label>
-                                <br><br>
-                                <label>
-                                    <b>Surname:</b>
-                                    <input type="text" name="surname" required min="1" max="45" size="45">
-                                </label>
-                                <br>
-                                <br>
-                                <label>
-                                    <b>2.2 Are you known by any other names (aliases)?</b>
-                                    <input type="radio" name="known_by_other_names" value="yes"> Yes
-                                    <input type="radio" name="known_by_other_names" value="no"> No
+                    </div>
+
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section2">
+                                <fieldset>
+                                    <legend><b>2. Applicant Details</b></legend>
                                     <br>
-                                    <em>If yes, please provide the aliases :</em> <input type="text" name="surname" required min="1"
-                                        max="45" size="45">
-                                </label>
-                                <br>
-                                <br>
-                                <label>
-                                    <b>2.3 Have you ever changed your name?</b>
-                                    <input type="radio" name="changed_name" value="yes"> Yes
-                                    <input type="radio" name="changed_name" value="no"> No
+                                    <label>
+                                        <b>2.1 Given Name:</b>
+                                        <input type="text" name="given_name" required min="1" max="45" size="45"><br>
+                                        <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        <b>Surname:</b>
+                                        <input type="text" name="surname" required min="1" max="45" size="45">
+                                    </label>
                                     <br>
-                                    <em>If yes, please provide the previous name :</em> <input type="text" name="surname" required min="1"
-                                        max="45" size="45">
-                                </label>
-                                <br>
-                                <br>
-                    
-                                <label>
-                                    <b>2.4 Date of Birth:</b>
-                                    <input type="date" name="dob" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.5 Place of Birth (Village or Town or City) :</b>
-                                    <input type="text" name="place_of_birth" required min="1" max="25" size="25">
-                                </label>
-                                <br><br>
-                                <label>
-                                    District (If born in India) :
-                                    <input type="text" name="district" required min="1" max="25" size="25">
-                                </label>
-                                <br><br>
-                                <label>
-                                    State/UT (If born in India):
-                                    <input type="text" name="state" required min="1" max="25" size="25">
-                                </label>
-                                <br><br>
-                                <label>
-                                    Region/Country (If born abroad) If born before 15/08/1947 in a place now in Pakistan or
-                                    Bangladesh, write "Undivided India" &nbsp; &nbsp;
-                                    <input type="text" name="region_country" required min="1" max="25" size="25">
-                                </label>
-                                <br><br>
-                                <label>
-                                    <b>2.6 Gender:</b>
-                                    <input type="radio" name="gender" value="male"> Male
-                                    <input type="radio" name="gender" value="female"> Female
-                                    <input type="radio" name="gender" value="transgender"> Transgender
-                                </label>
-                                <br><br>
-                                <label>
-                                    <b>2.7 Marital Status:</b>
-                                    <select name="marital_status">
-                                        <option value="single">Single</option>
-                                        <option value="married">Married</option>
-                                        <option value="divorced">Divorced</option>
-                                        <option value="widow_widower">Widow/Widower</option>
-                                        <option value="separated">Separated</option>
-                                    </select>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.8 Citizenship of India by:</b>
-                                    <select name="citizenship">
-                                        <option value="birth">Birth</option>
-                                        <option value="descent">Descent</option>
-                                        <option value="registration_naturalization">Registration/Naturalization</option>
-                                    </select>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.9 PAN (If available):</b>
-                                    <input type="text" name="pan" min="10" max="10" size="10">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.10 Voter ID (If available):</b>
-                                    <input type="text" name="voter_id">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.11 Employment Type:</b>
-                                    <select name="employment_type">
-                                        <option value="psu">PSU</option>
-                                        <option value="government">Government</option>
-                                        <option value="statutory_body">Statutory Body</option>
-                                        <option value="retired_government_servant">Retired Government Servant</option>
-                                        <option value="self_employed">Self Employed</option>
-                                        <option value="private">Private</option>
-                                        <option value="homemaker">Homemaker</option>
-                                        <option value="not_employed">Not Employed</option>
-                                        <option value="retired_private_service">Retired-Private Service</option>
-                                        <option value="student">Student</option>
-                                        <option value="others">Others</option>
-                                        <option value="x">Owners, Partners & Directors of companies which are members of CII, FICCI &
-                                            ASSOCHAM</option>
-                                    </select>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.12 If employed in Government/ Statutory Body/ PSU, specify organization name:</b>
-                                    <input type="text" name="organization_name" min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.13 Is either of your parent (in case of minor)/ spouse, a government servant?:</b>
-                                    <input type="radio" name="parent_spouse_government_servant" value="yes"> Yes
-                                    <input type="radio" name="parent_spouse_government_servant" value="no"> No
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.14 Educational Qualification:</b>
-                                    <select name="education">
-                                        <option value="7th_pass_or_less">7th pass or less</option>
-                                        <option value="between_8th_and_9th_standard">Between 8th and 9th Standard</option>
-                                        <option value="10th_pass_and_above">10th pass and above</option>
-                                        <option value="graduate_and_above">Graduate and above</option>
-                                    </select>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.15 Are you eligible for Non-ECR category?</b>
-                                    <input type="radio" name="non_ecr" value="yes"> Yes
-                                    <input type="radio" name="non_ecr" value="no"> No
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.16 Visible Distinguishing Mark:</b>
-                                    <input type="text" name="distinguishing_mark" min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>2.17 Aadhaar Number:</b>
-                                    <input type="text" name="aadhaar" min="12" max="12" size="12">
-                                </label>
-                                <br>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section2', 'section1')">Previous</button>
-                                    <button type="button" onclick="nextSection('section2', 'section3')">Next</button>
-                                </div>
-                    
-                            </fieldset>
-    
-                        </div>
-                        <div class="form-section" id="section3">
-                            <fieldset>
-                                <legend><b>3. Family Details:</b></legend>
-                                <br>
-                                <label>
-                                    <b>3.1 Father's Given Name:</b>
-                                    <input type="text" name="father_given_name" required min="1" max="45" size="45"><br>
-                                    <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
-                                </label>
-                                <br><br>
-                                <label>
-                                    <b>Surname:</b>
-                                    <input type="text" name="father_surname" required min="1" max="45" size="45">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>3.2 Mother's Given Name:</b>
-                                    <input type="text" name="mother_given_name" required min="1" max="45" size="45"><br>
-                                    <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>Surname:</b>
-                                    <input type="text" name="mother_surname" required required min="1" max="45" size="45">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>3.3 Legal Guardian's Given Name:</b>
-                                    <input type="text" name="legal_guardian_given_name" required min="1" max="45" size="45"><br>
-                                    <em>(If applicable) (Initials not allowed)</em>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>Surname:</b>
-                                    <input type="text" name="legal_guardian_surname" required required min="1" max="45" size="45">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>3.4 Spouse's Given Name:</b>
-                                    <input type="text" name="spouse_given_name" required min="1" max="45" size="45"><br>
-                                    <em>(Given Name means First name followed by Middle name (If any)) (Initials not allowed)</em>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>Surname:</b>
-                                    <input type="text" name="legal_guardian_surname" required required min="1" max="45" size="45">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    <b>3.5 If applicant is minor, provide following details:</b><br>
-                                    <b>Parent's Passport Details</b> &nbsp; <em>(If passport has been applied for but not received, give
-                                        File Number)</em>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Father's/Legal Guardian's File/Passport Number:
-                                    <input type="text" name="father_passport_number" min="0" max="15">
-                                </label>
-                                <br><br>
-                                <label>
-                                    Father's/Legal Guardian's Nationality, if not Indian:
-                                    <input type="text" name="father_nationality" min="0" max="15">
-                                </label>
-                                <br><br>
-                                <label>
-                                    Mother's/Legal Guardian's File/Passport Number:
-                                    <input type="text" name="mother_passport_number" min="0" max="15">
-                                </label>
-                                <br><br>
-                                <label>
-                                    Mother's/Legal Guardian's Nationality, if not Indian:
-                                    <input type="text" name="mother_nationality" min="0" max="15">
-                                </label>
-                                <br>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section3', 'section2')">Previous</button>
-                                    <button type="button" onclick="nextSection('section3', 'section4')">Next</button>
-                                </div>
-                            </fieldset>
-    
-                        </div>
-                        <div class="form-section" id="section4">
-                            <fieldset>
-                                <legend><b>4. Present Residential Address Details (Where applicant presently resides)</b></legend>
-                                <br>
-                                <label>
-                                    <b>4.1 House No. and Street Name:</b>
-                                    <input type="text" name="present_house_street" required min="1" max="40" size="40">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Village or Town or City:
-                                    <input type="text" name="present_town" required min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    District:
-                                    <input type="text" name="present_district" required min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Police Station:
-                                    <input type="text" name="present_police_station" required min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    State/UT:
-                                    <input type="text" name="present_state" required min="1" max="30" size="30">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    PIN:
-                                    <input type="text" name="pin" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Mobile Number:
-                                    <input type="text" name="mobile_number" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Telephone Number:
-                                    <input type="text" name="telephone_number">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    E-mail ID:
-                                    <input type="email" name="email" required>
-                                </label>
-                                <br><br>
-                                <label>
-                                    <b>4.2 Is permanent address same as present address?</b>
-                                    <input type="radio" name="same_address" value="yes"> Yes
-                                    <input type="radio" name="same_address" value="no"> No
-                                </label>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section4', 'section3')">Previous</button>
-                                    <button type="button" onclick="nextSection('section4', 'section5')">Next</button>
-                                </div>
-                            </fieldset>
-    
-                        </div>
-                        <div class="form-section" id="section5">
-                            <fieldset>
-                                <legend><b>5. Emergency Contact Details</b></legend>
-                                <br>
-                                <label>
-                                    Name and Address (Mention address only if different from present residential address):
-                                    <input type="text" name="emergency_contact_name" required size="70">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Mobile Number:
-                                    <input type="text" name="emergency_contact_mobile" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Telephone Number:
-                                    <input type="text" name="emergency_contact_telephone">
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    E-mail ID:
-                                    <input type="email" name="emergency_contact_email" required>
-                                </label>
-                                <br>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section5', 'section4')">Previous</button>
-                                    <button type="button" onclick="nextSection('section5', 'section6')">Next</button>
-                                </div>
-                            </fieldset>
-    
-                        </div>
-                        <div class="form-section" id="section6">
-                            <fieldset>
-                                <legend><b>6. Other details</b></legend><br>
-                                <b>6.1 Provide the following details if there are any criminal proceedings pending
-                                    against the applicant.</b><br><br>
-                                <label>
-                                    6.1.1 Are any proceedings in respect of an offence alleged to have been committed by
-                                    you pending before a criminal court in India?
-                                    <input type="radio" name="criminal_proceedings" value="yes"> Yes
-                                    <input type="radio" name="criminal_proceedings" value="no"> No
-                                </label><br><br>
-                    
-                                <label>
-                                    6.1.2 Has any warrant or summons for your appearance been issued & pending before
-                                    a court under any law for the time being in force?
-                                    <input type="radio" name="criminal_proceedings" value="yes"> Yes
-                                    <input type="radio" name="criminal_proceedings" value="no"> No
-                                </label><br><br>
-                    
-                                <label>
-                                    6.1.3 Has a warrant for your arrest been issued by a court under any law for the time
-                                    being in force?
-                                    <input type="radio" name="criminal_proceedings" value="yes"> Yes
-                                    <input type="radio" name="criminal_proceedings" value="no"> No
-                                </label><br><br>
-                    
-                                <label>
-                                    6.1.4 Has an order prohibiting your departure from India been made by any court?
-                                    If yes, fill Column 6.4 of Supplementary Form
-                                    <input type="radio" name="criminal_proceedings" value="yes"> Yes
-                                    <input type="radio" name="criminal_proceedings" value="no"> No
-                                </label><br>
-                    
-                                <br>
-                             
-                                <b>6.2 Provide the following details if the applicant has been convicted by a court in
-                                    India.</b><br><br>
+                                    <br>
+                                    <label>
+                                        <b>2.2 Are you known by any other names (aliases)?</b>
+                                        <input type="radio" name="known_by_other_names" value="yes"> Yes
+                                        <input type="radio" name="known_by_other_names" value="no"> No
+                                        <br>
+                                        <em>If yes, please provide the aliases :</em> <input type="text" name="surname" required min="1"
+                                            max="45" size="45">
+                                    </label>
+                                    <br>
+                                    <br>
+                                    <label>
+                                        <b>2.3 Have you ever changed your name?</b>
+                                        <input type="radio" name="changed_name" value="yes"> Yes
+                                        <input type="radio" name="changed_name" value="no"> No
+                                        <br>
+                                        <em>If yes, please provide the previous name :</em> <input type="text" name="surname" required min="1"
+                                            max="45" size="45">
+                                    </label>
+                                    <br>
+                                    <br>
                         
-                                <label>
-                                    6.2.1 Have you, at any time during the period of five years immediately preceding the
-                                    date of this application, been convicted by a court in India for any offence
-                                    involving moral turpitude and sentenced in respect thereof to imprisonment for
-                                    not less than two years?
-                                    <input type="radio" name="criminal_convictions" value="yes"> Yes
-                                    <input type="radio" name="criminal_convictions" value="no"> No
-                                </label><br><br>
-                
-                                <b>6.3 Provide the following details if the applicant has been refused/denied passport.</b><br><br>
-                                <label>
-                                    6.3.1 Have you ever been refused/denied passport?
-                                    <input type="radio" name="refused_passport" value="yes"> Yes
-                                    <input type="radio" name="refused_passport" value="no"> No
-                                </label><br><br>
-                                <label>
-                
-                                <label>
-                                    6.3.2 Has your passport ever been impounded?
-                                    <input type="radio" name="refused_passport" value="yes"> Yes
-                                    <input type="radio" name="refused_passport" value="no"> No
-                                </label><br><br>
-                              
-                
-                                <label>
-                                    6.3.3 Has your passport ever been revoked?
-                                    <input type="radio" name="refused_passport" value="yes"> Yes
-                                    <input type="radio" name="refused_passport" value="no"> No
-                                </label><br><br>
-                
-                                       
-                
-                                <b>6.4 Provide the following details if applicant has applied for or been granted foreign
-                                    citizenship.</b><br><br>
-                
-                                <label>
-                                    6.4.1 Have you ever been granted citizenship by any other region/country?
-                                    <input type="radio" name="granted_citizenship" value="yes"> Yes
-                                    <input type="radio" name="granted_citizenship" value="no"> No
-                                </label><br><br>
-                
-                                <label>
-                                    6.4.2 Have you ever held the passport of any other region/country at any time?
-                                    <input type="radio" name="granted_citizenship" value="yes"> Yes
-                                    <input type="radio" name="granted_citizenship" value="no"> No
-                                </label><br><br>
-                
-                                <label>
-                                    6.4.3 Have you ever surrendered your Indian passport?
-                                    <input type="radio" name="granted_citizenship" value="yes"> Yes
-                                    <input type="radio" name="granted_citizenship" value="no"> No
-                                </label><br><br>
-                
-                                <label>
-                                    6.4.4 Have you ever applied for renunciation of Indian citizenship?
-                                    <input type="radio" name="granted_citizenship" value="yes"> Yes
-                                    <input type="radio" name="granted_citizenship" value="no"> No
-                                </label><br><br>
-                
-                                <b>6.5 Provide the following details if applicant has returned to India on Emergency
-                                    Certificate.</b><br><br>
-                                <label>
-                                    6.5.1 Have you ever returned to India on Emergency Certificate (EC)?
-                                    <input type="radio" name="surrendered_passport" value="yes"> Yes
-                                    <input type="radio" name="surrendered_passport" value="no"> No
-                                </label><br><br>
-    
-                                <label>
-                                    6.5.2 Have you ever been deported from any country?
-                                    <input type="radio" name="surrendered_passport" value="yes"> Yes
-                                    <input type="radio" name="surrendered_passport" value="no"> No
-                                </label><br><br>
-                                <label>
-                                    6.5.3 Have you ever been repatriated from any country back to India?
-                                    <input type="radio" name="surrendered_passport" value="yes"> Yes
-                                    <input type="radio" name="surrendered_passport" value="no"> No
-                                </label><br>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section6', 'section5')">Previous</button>
-                                    <button type="button" onclick="nextSection('section6', 'section7')">Next</button>
-                                </div>
-                    
-                            </fieldset>
-    
-                        </div>
-                        <div class="form-section" id="section7">
-                            <fieldset>
-                                <legend><b>7. Self Declaration</b></legend>
-                                <p>I owe allegiance to the sovereignty, unity & integrity of India, and have not voluntarily acquired
-                                    citizenship or
-                                    travel document of any other country. I have not lost, surrendered or been deprived of the citizenship
-                                    of India.
-                                    I have not contravened any of the conditions relating to the possession and use of an Indian passport.
-                                </p>
-                    
-                                <p>
-                                    I affirm that the information and particulars given by me in this form are true and correct. I further
-                                    state that I
-                                    am not suppressing any material information in this regard. I further affirm that the enclosures and
-                                    documentary
-                                    proof submitted in support of my application for an Indian passport are authentic and solely pertain to
-                                    me and
-                                    I am fully responsible for the accuracy of the same. I am liable to be penalized or prosecuted if found
-                                    otherwise.
-                                    I am aware that under the Passports Act, 1967 it is a criminal offence to furnish any false information
-                                    or to
-                                    suppress any material information with a view to obtaining passport or travel document.
-                                </p>
-                    
-                                <p>
-                                    I have read and understood the contents of the above and by submitting this form certify that all the
-                                    information
-                                    submitted by me in the form is bonafide.
-                                </p>
-                    
-                                <label>
-                                    Place:
-                                    <input type="text" name="declaration_place" required>
-                                </label><br><br>
-                    
-                                <label>
-                                    Date:
-                                    <input type="date" name="declaration_date" required>
-                                </label><br><br>
-                    
-                                <label>
-                                    Upload Signature/ Left Hand
-                                    Thumb Impression of
-                                    Applicant (If applicant is
-                                    minor, either parent to
-                                    sign)
-                                    <input type="file" name="applicant_signature" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Signature/ Left Hand Thumb
-                                    Impression of Illiterate
-                                    Applicant and Minors who
-                                    cannot sign.
-                                    <input type="file" name="left_hand_thumb_imp" required>
-                                </label>
-                                <br><br>
-                    
-                                <label>
-                                    Please upload your
-                                    unsigned recent colour
-                                    photograph with white
-                                    background of size
-                                    4.5cm X 3.5cm.
-                                    <input type="file" name="applicant_signature" required>
-                                </label>
-                                <br><br>
-                                <div class="form-navigation">
-                                    <button type="button" onclick="previousSection('section6', 'section5')">Previous</button>
-                                    
-                                </div>
-                            </fieldset>
-                            <button type="submit">Save and Go to Payment</button>
-                        </div>
+                                    <label>
+                                        <b>2.4 Date of Birth:</b>
+                                        <input type="date" name="dob" required>
+                                    </label>
+                                    <br><br>
                         
-                    </form>             
-                </div>
+                                    <label>
+                                        <b>2.5 Place of Birth (Village or Town or City) :</b>
+                                        <input type="text" name="place_of_birth" required min="1" max="25" size="25">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        District (If born in India) :
+                                        <input type="text" name="district" required min="1" max="25" size="25">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        State/UT (If born in India):
+                                        <input type="text" name="state" required min="1" max="25" size="25">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        Region/Country (If born abroad) If born before 15/08/1947 in a place now in Pakistan or
+                                        Bangladesh, write "Undivided India" &nbsp; &nbsp;
+                                        <input type="text" name="region_country" required min="1" max="25" size="25">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        <b>2.6 Gender:</b>
+                                        <input type="radio" name="gender" value="male"> Male
+                                        <input type="radio" name="gender" value="female"> Female
+                                        <input type="radio" name="gender" value="transgender"> Transgender
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        <b>2.7 Marital Status:</b>
+                                        <select name="marital_status">
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                            <option value="divorced">Divorced</option>
+                                            <option value="widow_widower">Widow/Widower</option>
+                                            <option value="separated">Separated</option>
+                                        </select>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.8 Citizenship of India by:</b>
+                                        <select name="citizenship">
+                                            <option value="birth">Birth</option>
+                                            <option value="descent">Descent</option>
+                                            <option value="registration_naturalization">Registration/Naturalization</option>
+                                        </select>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.9 PAN (If available):</b>
+                                        <input type="text" name="pan" min="10" max="10" size="10">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.10 Voter ID (If available):</b>
+                                        <input type="text" name="voter_id">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.11 Employment Type:</b>
+                                        <select name="employment_type">
+                                            <option value="psu">PSU</option>
+                                            <option value="government">Government</option>
+                                            <option value="statutory_body">Statutory Body</option>
+                                            <option value="retired_government_servant">Retired Government Servant</option>
+                                            <option value="self_employed">Self Employed</option>
+                                            <option value="private">Private</option>
+                                            <option value="homemaker">Homemaker</option>
+                                            <option value="not_employed">Not Employed</option>
+                                            <option value="retired_private_service">Retired-Private Service</option>
+                                            <option value="student">Student</option>
+                                            <option value="others">Others</option>
+                                            <option value="x">Owners, Partners & Directors of companies which are members of CII, FICCI &
+                                                ASSOCHAM</option>
+                                        </select>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.12 If employed in Government/ Statutory Body/ PSU, specify organization name:</b>
+                                        <input type="text" name="organization_name" min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.13 Is either of your parent (in case of minor)/ spouse, a government servant?:</b>
+                                        <input type="radio" name="parent_spouse_government_servant" value="yes"> Yes
+                                        <input type="radio" name="parent_spouse_government_servant" value="no"> No
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.14 Educational Qualification:</b>
+                                        <select name="education">
+                                            <option value="7th_pass_or_less">7th pass or less</option>
+                                            <option value="between_8th_and_9th_standard">Between 8th and 9th Standard</option>
+                                            <option value="10th_pass_and_above">10th pass and above</option>
+                                            <option value="graduate_and_above">Graduate and above</option>
+                                        </select>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.15 Are you eligible for Non-ECR category?</b>
+                                        <input type="radio" name="non_ecr" value="yes"> Yes
+                                        <input type="radio" name="non_ecr" value="no"> No
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.16 Visible Distinguishing Mark:</b>
+                                        <input type="text" name="distinguishing_mark" min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>2.17 Aadhaar Number:</b>
+                                        <input type="text" name="aadhaar" min="12" max="12" size="12">
+                                    </label>
+                                    <br>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section2', 'section1')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section2', 'section3')">Next</button>
+                                    </div>
+                        
+                                </fieldset>
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section3">
+                                <fieldset>
+                                    <legend><b>3. Family Details:</b></legend>
+                                    <br>
+                                    <label>
+                                        <b>3.1 Father's Given Name:</b>
+                                        <input type="text" name="father_given_name" required min="1" max="45" size="45"><br>
+                                        <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        <b>Surname:</b>
+                                        <input type="text" name="father_surname" required min="1" max="45" size="45">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>3.2 Mother's Given Name:</b>
+                                        <input type="text" name="mother_given_name" required min="1" max="45" size="45"><br>
+                                        <em>[Given Name means First name followed by Middle name (If any)(Initials not allowed)]</em>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>Surname:</b>
+                                        <input type="text" name="mother_surname" required required min="1" max="45" size="45">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>3.3 Legal Guardian's Given Name:</b>
+                                        <input type="text" name="legal_guardian_given_name" required min="1" max="45" size="45"><br>
+                                        <em>(If applicable) (Initials not allowed)</em>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>Surname:</b>
+                                        <input type="text" name="legal_guardian_surname" required required min="1" max="45" size="45">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>3.4 Spouse's Given Name:</b>
+                                        <input type="text" name="spouse_given_name" required min="1" max="45" size="45"><br>
+                                        <em>(Given Name means First name followed by Middle name (If any)) (Initials not allowed)</em>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>Surname:</b>
+                                        <input type="text" name="legal_guardian_surname" required required min="1" max="45" size="45">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        <b>3.5 If applicant is minor, provide following details:</b><br>
+                                        <b>Parent's Passport Details</b> &nbsp; <em>(If passport has been applied for but not received, give
+                                            File Number)</em>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Father's/Legal Guardian's File/Passport Number:
+                                        <input type="text" name="father_passport_number" min="0" max="15">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        Father's/Legal Guardian's Nationality, if not Indian:
+                                        <input type="text" name="father_nationality" min="0" max="15">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        Mother's/Legal Guardian's File/Passport Number:
+                                        <input type="text" name="mother_passport_number" min="0" max="15">
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        Mother's/Legal Guardian's Nationality, if not Indian:
+                                        <input type="text" name="mother_nationality" min="0" max="15">
+                                    </label>
+                                    <br>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section3', 'section2')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section3', 'section4')">Next</button>
+                                    </div>
+                                </fieldset>
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section4">
+                                <fieldset>
+                                    <legend><b>4. Present Residential Address Details (Where applicant presently resides)</b></legend>
+                                    <br>
+                                    <label>
+                                        <b>4.1 House No. and Street Name:</b>
+                                        <input type="text" name="present_house_street" required min="1" max="40" size="40">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Village or Town or City:
+                                        <input type="text" name="present_town" required min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        District:
+                                        <input type="text" name="present_district" required min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Police Station:
+                                        <input type="text" name="present_police_station" required min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        State/UT:
+                                        <input type="text" name="present_state" required min="1" max="30" size="30">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        PIN:
+                                        <input type="text" name="pin" required>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Mobile Number:
+                                        <input type="text" name="mobile_number" required>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Telephone Number:
+                                        <input type="text" name="telephone_number">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        E-mail ID:
+                                        <input type="email" name="email" required>
+                                    </label>
+                                    <br><br>
+                                    <label>
+                                        <b>4.2 Is permanent address same as present address?</b>
+                                        <input type="radio" name="same_address" value="yes"> Yes
+                                        <input type="radio" name="same_address" value="no"> No
+                                    </label>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section4', 'section3')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section4', 'section5')">Next</button>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section5">
+                                <fieldset>
+                                    <legend><b>5. Emergency Contact Details</b></legend>
+                                    <br>
+                                    <label>
+                                        Name and Address (Mention address only if different from present residential address):
+                                        <input type="text" name="emergency_contact_name" required size="70">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Mobile Number:
+                                        <input type="text" name="emergency_contact_mobile" required>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Telephone Number:
+                                        <input type="text" name="emergency_contact_telephone">
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        E-mail ID:
+                                        <input type="email" name="emergency_contact_email" required>
+                                    </label>
+                                    <br>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section5', 'section4')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section5', 'section6')">Next</button>
+                                    </div>
+                                </fieldset>
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section6">
+                                <fieldset>
+                                    <legend><b>6. Other details</b></legend><br>
+                                    <b>6.1 Provide the following details if there are any criminal proceedings pending
+                                        against the applicant.</b><br><br>
+                                    <label>
+                                        6.1.1 Are any proceedings in respect of an offence alleged to have been committed by
+                                        you pending before a criminal court in India?
+                                        <input type="radio" name="criminal_proceedings" value="yes"> Yes
+                                        <input type="radio" name="criminal_proceedings" value="no"> No
+                                    </label><br><br>
+                        
+                                    <label>
+                                        6.1.2 Has any warrant or summons for your appearance been issued & pending before
+                                        a court under any law for the time being in force?
+                                        <input type="radio" name="criminal_proceedings" value="yes"> Yes
+                                        <input type="radio" name="criminal_proceedings" value="no"> No
+                                    </label><br><br>
+                        
+                                    <label>
+                                        6.1.3 Has a warrant for your arrest been issued by a court under any law for the time
+                                        being in force?
+                                        <input type="radio" name="criminal_proceedings" value="yes"> Yes
+                                        <input type="radio" name="criminal_proceedings" value="no"> No
+                                    </label><br><br>
+                        
+                                    <label>
+                                        6.1.4 Has an order prohibiting your departure from India been made by any court?
+                                        If yes, fill Column 6.4 of Supplementary Form
+                                        <input type="radio" name="criminal_proceedings" value="yes"> Yes
+                                        <input type="radio" name="criminal_proceedings" value="no"> No
+                                    </label><br>
+                        
+                                    <br>
+                                
+                                    <b>6.2 Provide the following details if the applicant has been convicted by a court in
+                                        India.</b><br><br>
+                            
+                                    <label>
+                                        6.2.1 Have you, at any time during the period of five years immediately preceding the
+                                        date of this application, been convicted by a court in India for any offence
+                                        involving moral turpitude and sentenced in respect thereof to imprisonment for
+                                        not less than two years?
+                                        <input type="radio" name="criminal_convictions" value="yes"> Yes
+                                        <input type="radio" name="criminal_convictions" value="no"> No
+                                    </label><br><br>
+                    
+                                    <b>6.3 Provide the following details if the applicant has been refused/denied passport.</b><br><br>
+                                    <label>
+                                        6.3.1 Have you ever been refused/denied passport?
+                                        <input type="radio" name="refused_passport" value="yes"> Yes
+                                        <input type="radio" name="refused_passport" value="no"> No
+                                    </label><br><br>
+                                    <label>
+                    
+                                    <label>
+                                        6.3.2 Has your passport ever been impounded?
+                                        <input type="radio" name="refused_passport" value="yes"> Yes
+                                        <input type="radio" name="refused_passport" value="no"> No
+                                    </label><br><br>
+                                
+                    
+                                    <label>
+                                        6.3.3 Has your passport ever been revoked?
+                                        <input type="radio" name="refused_passport" value="yes"> Yes
+                                        <input type="radio" name="refused_passport" value="no"> No
+                                    </label><br><br>
+                    
+                                        
+                    
+                                    <b>6.4 Provide the following details if applicant has applied for or been granted foreign
+                                        citizenship.</b><br><br>
+                    
+                                    <label>
+                                        6.4.1 Have you ever been granted citizenship by any other region/country?
+                                        <input type="radio" name="granted_citizenship" value="yes"> Yes
+                                        <input type="radio" name="granted_citizenship" value="no"> No
+                                    </label><br><br>
+                    
+                                    <label>
+                                        6.4.2 Have you ever held the passport of any other region/country at any time?
+                                        <input type="radio" name="granted_citizenship" value="yes"> Yes
+                                        <input type="radio" name="granted_citizenship" value="no"> No
+                                    </label><br><br>
+                    
+                                    <label>
+                                        6.4.3 Have you ever surrendered your Indian passport?
+                                        <input type="radio" name="granted_citizenship" value="yes"> Yes
+                                        <input type="radio" name="granted_citizenship" value="no"> No
+                                    </label><br><br>
+                    
+                                    <label>
+                                        6.4.4 Have you ever applied for renunciation of Indian citizenship?
+                                        <input type="radio" name="granted_citizenship" value="yes"> Yes
+                                        <input type="radio" name="granted_citizenship" value="no"> No
+                                    </label><br><br>
+                    
+                                    <b>6.5 Provide the following details if applicant has returned to India on Emergency
+                                        Certificate.</b><br><br>
+                                    <label>
+                                        6.5.1 Have you ever returned to India on Emergency Certificate (EC)?
+                                        <input type="radio" name="surrendered_passport" value="yes"> Yes
+                                        <input type="radio" name="surrendered_passport" value="no"> No
+                                    </label><br><br>
+        
+                                    <label>
+                                        6.5.2 Have you ever been deported from any country?
+                                        <input type="radio" name="surrendered_passport" value="yes"> Yes
+                                        <input type="radio" name="surrendered_passport" value="no"> No
+                                    </label><br><br>
+                                    <label>
+                                        6.5.3 Have you ever been repatriated from any country back to India?
+                                        <input type="radio" name="surrendered_passport" value="yes"> Yes
+                                        <input type="radio" name="surrendered_passport" value="no"> No
+                                    </label><br>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section6', 'section5')">Previous</button>
+                                        <button type="button" class="btn btn-primary" onclick="nextSection('section6', 'section7')">Next</button>
+                                    </div>
+                        
+                                </fieldset>
+        
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="form-section card shadow" id="section7">
+                                <fieldset>
+                                    <legend><b>7. Self Declaration</b></legend>
+                                    <p>I owe allegiance to the sovereignty, unity & integrity of India, and have not voluntarily acquired
+                                        citizenship or
+                                        travel document of any other country. I have not lost, surrendered or been deprived of the citizenship
+                                        of India.
+                                        I have not contravened any of the conditions relating to the possession and use of an Indian passport.
+                                    </p>
+                        
+                                    <p>
+                                        I affirm that the information and particulars given by me in this form are true and correct. I further
+                                        state that I
+                                        am not suppressing any material information in this regard. I further affirm that the enclosures and
+                                        documentary
+                                        proof submitted in support of my application for an Indian passport are authentic and solely pertain to
+                                        me and
+                                        I am fully responsible for the accuracy of the same. I am liable to be penalized or prosecuted if found
+                                        otherwise.
+                                        I am aware that under the Passports Act, 1967 it is a criminal offence to furnish any false information
+                                        or to
+                                        suppress any material information with a view to obtaining passport or travel document.
+                                    </p>
+                        
+                                    <p>
+                                        I have read and understood the contents of the above and by submitting this form certify that all the
+                                        information
+                                        submitted by me in the form is bonafide.
+                                    </p>
+                        
+                                    <label>
+                                        Place:
+                                        <input type="text" name="declaration_place" required>
+                                    </label><br><br>
+                        
+                                    <label>
+                                        Date:
+                                        <input type="date" name="declaration_date" required>
+                                    </label><br><br>
+                        
+                                    <label>
+                                        Upload Signature/ Left Hand
+                                        Thumb Impression of
+                                        Applicant (If applicant is
+                                        minor, either parent to
+                                        sign)
+                                        <input type="file" name="applicant_signature" required>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Signature/ Left Hand Thumb
+                                        Impression of Illiterate
+                                        Applicant and Minors who
+                                        cannot sign.
+                                        <input type="file" name="left_hand_thumb_imp" required>
+                                    </label>
+                                    <br><br>
+                        
+                                    <label>
+                                        Please upload your
+                                        unsigned recent colour
+                                        photograph with white
+                                        background of size
+                                        4.5cm X 3.5cm.
+                                        <input type="file" name="applicant_signature" required>
+                                    </label>
+                                    <br><br>
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-primary" onclick="previousSection('section7', 'section6')">Previous</button>
+                                        
+                                        <button type="submit" class="btn btn-success">Save and Go to Payment</button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </form>             
             </div>
+        </div>
         </div>
     </div>
 
+    
 
-   
-<script>
-    function nextSection(current, next) {
-        document.getElementById(current).classList.remove('active');
-        document.getElementById(next).classList.add('active');
-    }
+    <!-- Footer -->
+    <footer class="footer custom-bg">
+        <div class="container">
+            <p>&copy; 2024 Passport Application. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-    function previousSection(current, previous) {
-        document.getElementById(current).classList.remove('active');
-        document.getElementById(previous).classList.add('active');
-    }
-
-    function saveSectionData(sectionId) {
-        const section = document.getElementById(sectionId);
-        const inputs = section.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            localStorage.setItem(input.name, input.value);
-        });
-        alert('Progress saved!');
-    }
-
-    window.onload = function() {
-        const sections = document.querySelectorAll('.form-section');
-        sections.forEach(section => {
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script>
+        function nextSection(current, next) {
+            document.getElementById(current).classList.remove('active');
+            document.getElementById(next).classList.add('active');
+        }
+    
+        function previousSection(current, previous) {
+            document.getElementById(current).classList.remove('active');
+            document.getElementById(previous).classList.add('active');
+        }
+    
+        function saveSectionData(sectionId) {
+            const section = document.getElementById(sectionId);
             const inputs = section.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
-                if (localStorage.getItem(input.name)) {
-                    input.value = localStorage.getItem(input.name);
-                }
+                localStorage.setItem(input.name, input.value);
             });
-        });
-    }
-</script>
-
- 
+            alert('Progress saved!');
+        }
+    
+        window.onload = function() {
+            const sections = document.querySelectorAll('.form-section');
+            sections.forEach(section => {
+                const inputs = section.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    if (localStorage.getItem(input.name)) {
+                        input.value = localStorage.getItem(input.name);
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 </html>
