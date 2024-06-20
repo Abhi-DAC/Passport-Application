@@ -5,84 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passport Application</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-  
-        .custom-bg {
-           background-color: #b4b7b9;
-        }
-       .custom-title {
-           color: #007bff; /* Bootstrap Primary Color */
+ 
+   <style>
 
-       }
-       .navbar, .content, .footer {
-           color: #ffffff; /* White text */
-       }
-    
-       .content {
-           padding: 20px;
-           background-color: #f9f9fb;
-       }
-     
-       .footer {
-           background-color: #cfd4da; /* Dark Gray Background */
-           text-align: center; 
-           padding: 10px 0;
-           color: black;
-       }
-       .front {
-           position: fixed;
-           display: none;
-           width: 90%;
-           max-width: 500px;
-           
-           top: 50%;
-           left: 50%;
-           background-color: rgb(254, 252, 252);
-           padding: 20px;
-           border-radius: 10px;
-           box-shadow: 0 5px 15px rgba(7, 7, 7, 0.5);
-           transform: translate(-50%, -50%);
-           z-index: 1050;
-       
-       }
-       .form-section {
-           display: block;
-           padding: 20px;
-           border: 1px solid #ddd;
-           border-radius: 5px;
-           margin-top: 20px;
-       }
+    /* Main Content Styling */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes up full height */
+}
 
-       .backdrop { 
-            display: none;
-           position: fixed;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background-color: rgba(12, 12, 12, 0.8);
-           top: 1em;
-           /* z-index: 1040;   */
-       }
-       label{
-           color: black;
-       }
-       
-       html, body {
-           height: 100%;
-       }
-       body {
-           display: flex;
-           flex-direction: column;
-       }
-       @media (min-width: 768px) {
-           .sidebar {
-               display: block !important;
-           }
-           .content {
-               margin-left: 2px;
-           }
-       }
-   </style>
+/* Navbar Styling */
+.navbar-custom, .footer {
+    background-color: #343a40; /* Dark Gray Background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar-brand img {
+    height: 2em;
+    width: 1.5em;
+}
+
+/* Content Section */
+.content {
+    margin-top: 56px; /* Height of the navbar */
+    padding: 20px;
+    background-color: white; 
+    flex: 1; /* Ensure content takes up the remaining space */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #cfd4da;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* Custom Styles */
+.custom-title {
+    color: #007bff; /* Bootstrap Primary Color */
+}
+
+label{
+    color: black;
+}
+
+.form-section {
+    display: block;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .content {
+        padding: 20px;
+        margin-top: 56px; /* Adjust if necessary */
+    }
+}
+
+    </style>
 </head>
 <body>
 
@@ -122,7 +125,7 @@
         <div class="wrapper flex-grow-1">
         <!-- Main content -->
             <div class="content flex-grow-1">
-                <div class="container mt-5">
+                <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-8">
                             <h1 class="custom-title text-center">Complaint/Feedback</h1>
@@ -163,5 +166,17 @@
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('.nav-link');
+        const menuLength = menuItem.length;
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className += " active";
+            }
+        }
+    });
+    </script>
 </body>
 </html>
