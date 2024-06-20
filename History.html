@@ -6,100 +6,120 @@
     <title>Passport Application</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        /* Custom Styles */
-        body {
-            overflow-x: hidden;
-        }
-        .navbar-custom {
-            background-color: #343a40;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9fafa;
-        }
-        .footer-custom {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .card-custom {
-            margin-bottom: 20px;
-        }
-        .custom-bg {
-            background-color: #343a40; /* Dark Gray Background */
-        }
-        .custom-title {
-            color: #007bff; /* Bootstrap Primary Color */
 
-        }
-        .navbar, .content, .footer {
-            color: #ffffff; /* White text */
-        }
-       
-        .content {
-            padding: 20px;
-            background-color: #ffffff; 
-        }
-        .sidebar {
-            min-height: 100vh; /* Full page height */
-        }
-        .footer {
-            background-color: #cfd4da; /* Dark Gray Background */
-            text-align: center; 
-            padding: 10px 0;
-            color: black;
-        }
+    /* Main Content Styling */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes up full height */
+}
 
-        .form-section.active {
-            display: block;
-        }
+/* Navbar Styling */
+.navbar-custom, .footer {
+    background-color: #343a40; /* Dark Gray Background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 10px 0;
+}
 
-        .form-navigation button {
-            padding: 10px 20px;
-            margin-right: 10px;
-        }
+.navbar-brand img {
+    height: 2em;
+    width: 1.5em;
+}
+
+/* Content Section */
+.content {
+    margin-top: 56px; /* Height of the navbar */
+    padding: 20px;
+    background-color:white;
+    flex: 1; /* Ensure content takes up the remaining space */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #cfd4da;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* Card Styling */
+.card {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+/* Card Text Styling */
+.card-title {
+    font-size: 1.5rem; /* Increase title font size */
+    font-weight: bold; /* Make title bold */
+    margin-bottom: 10px; /* Add margin bottom */
+}
+
+.card-text {
+    font-size: 1.1rem; /* Increase text font size */
+}
+
+.card-text small {
+    font-size: 0.8rem; /* Decrease small text font size */
+}
+
+/* Custom Styles */
+.custom-title {
+    color: #007bff; /* Bootstrap Primary Color */
+}
+
+/* Table hover effect */
+
+.table-striped tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background color for even rows */
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White background color for odd rows */
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e9ecef; /* Lighter background color on hover */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
 
 
-        .form-navigation {
-            margin-top: 20px;
-            text-align: right;
-        }
-        .form-section {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        label,b, p{
-            color: black;
-        }
-     
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
 
-        html, body {
-            height: 100%;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-        @media (min-width: 768px) {
-            .sidebar {
-                display: block !important;
-            }
-            .content {
-                margin-left: 2px;
-            }
-        }
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .content {
+        padding: 20px;
+        margin-top: 56px; /* Adjust if necessary */
+    }
+}
+
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom custom-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom custom-bg fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
@@ -123,17 +143,19 @@
                             <a class="dropdown-item" href="Appointment_availability.html" id="appointment_availability">Check Appointment Availability</a>
                             <a class="dropdown-item" href="#!" id="application_status">Track Application Status</a>
                             <a class="dropdown-item" href="index.html" id="login">Logout</a>
-
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
 
-    <div class="d-flex flex-column flex-grow-1">
+    <div class="d-flex flex-column flex-grow-1 mt-5">
+        
         <div class="wrapper flex-grow-1">
-        <!-- Main content -->
+        
+            <!-- Main content -->
             <div class="content flex-grow-1">
                 <div class="container">
                     <h1 class="text-center custom-title">User Logs History</h1>
@@ -183,8 +205,10 @@
                     </div>
                             
             </div>
-        </div>
-        </div>
+            </div>
+
+         </div>
+
     </div>
 
     
@@ -199,37 +223,18 @@
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     <script>
-        function nextSection(current, next) {
-            document.getElementById(current).classList.remove('active');
-            document.getElementById(next).classList.add('active');
+        document.addEventListener('DOMContentLoaded', function () {
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('.nav-link');
+        const menuLength = menuItem.length;
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className += " active";
+            }
         }
-    
-        function previousSection(current, previous) {
-            document.getElementById(current).classList.remove('active');
-            document.getElementById(previous).classList.add('active');
-        }
-    
-        function saveSectionData(sectionId) {
-            const section = document.getElementById(sectionId);
-            const inputs = section.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                localStorage.setItem(input.name, input.value);
-            });
-            alert('Progress saved!');
-        }
-    
-        window.onload = function() {
-            const sections = document.querySelectorAll('.form-section');
-            sections.forEach(section => {
-                const inputs = section.querySelectorAll('input, select, textarea');
-                inputs.forEach(input => {
-                    if (localStorage.getItem(input.name)) {
-                        input.value = localStorage.getItem(input.name);
-                    }
-                });
-            });
-        }
+    });
     </script>
 </body>
 </html>
