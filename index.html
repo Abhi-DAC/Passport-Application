@@ -7,6 +7,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
     <link rel="stylesheet" href="./CSS/Theme.css">
+    <style>
+        .front {
+            position: fixed;
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            
+            top: 50%;
+            left: 50%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(7, 7, 7, 0.5);
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+        
+        }
+
+        .backdrop { 
+             display: none;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 12, 12, 0.8);
+            top: 1em;
+            z-index: 1040;  
+        }
+    </style>
 </head>
 <body>
 
@@ -98,18 +127,43 @@
                     <div class="front ">
                         <form class="rounded-pill" action="home.html" method="get" id="employeeForm">
 
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username or Email" required>
+
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="username"
+                                    id="username"
+                                    aria-describedby="helpId"
+                                    placeholder="Username or Email"
+                                    required
+                                />
+                                <small id="helpId" class="form-text text-muted"></small>
+                            </div>
                             
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="password"
+                                    id="password"
+                                    aria-describedby="helpId"
+                                    placeholder="Password"
+                                    required
+                                />
+                                <small id="helpId" class="form-text text-muted"></small>
+                            </div>
+                            
                             
                             <a href="forgotPassword.html">Forgot Password?</a> 
                             <a href="register.html">Register</a><br><br>
                     
                             <div class="d-flex justify-content-end" >
                                 <button type="submit" class="btn btn-primary rounded-pill me-1">Save</button>
-                                <button type="button" class="btn btn-danger rounded-pill ms-1" id="closeBtn">Close</button>
+                                <button type="button" class="btn btn-danger rounded-pill " id="closeBtn">Close</button>
                             </div>
                         </form>
 
@@ -122,9 +176,9 @@
 
 
     <!-- Footer -->
-    <footer class="footer custom-bg">
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Passport Application. All Rights Reserved.</p>
+            <p class="text-white">&copy; 2024 Passport Application. All Rights Reserved.</p>
         </div>
     </footer>
 
