@@ -135,23 +135,6 @@ body {
                                             <img src="Credit-Card-Transparent.png" alt="Credit Card" class="img-fluid" style="width: 3em; margin-right: 10px;">
                                         </label>
                                     </div>
-                
-                                    <div class="form-group form-check">
-                                        <input type="radio" id="paypal" name="payment-method" class="form-check-input" value="paypal">
-                                        <label for="paypal" class="form-check-label">PayPal
-                                            <img src="PayPal-Logo-PNG-Picture.png" alt="PayPal" class="img-fluid" style="width: 3em; margin-right: 10px;">
-                                            
-                                        </label>
-                                    </div>
-                
-                                    <div class="form-group form-check">
-                                        <input type="radio" id="upi" name="payment-method" class="form-check-input" value="upi">
-                                        <label for="upi" class="form-check-label">UPI
-                                            <img src="UPI-Black.png" alt="UPI" class="img-fluid" style="width: 30px; margin-right: 10px;">
-                                            
-                                        </label>
-                                    </div>
-                
                                     <div id="credit-card-fields" class="payment-fields" style="display: none;">
                                         <div class="form-group">
                                             <label for="cc-number">Card Number</label>
@@ -167,6 +150,13 @@ body {
                                         </div>
                                     </div>
                 
+                                    <div class="form-group form-check">
+                                        <input type="radio" id="paypal" name="payment-method" class="form-check-input" value="paypal">
+                                        <label for="paypal" class="form-check-label">PayPal
+                                            <img src="PayPal-Logo-PNG-Picture.png" alt="PayPal" class="img-fluid" style="width: 3em; margin-right: 10px;">
+                                            
+                                        </label>
+                                    </div>
                                     <div id="paypal-fields" class="payment-fields" style="display: none;">
                                         <div class="form-group">
                                             <label for="paypal-email">PayPal Email</label>
@@ -174,12 +164,21 @@ body {
                                         </div>
                                     </div>
                 
+                                    <div class="form-group form-check">
+                                        <input type="radio" id="upi" name="payment-method" class="form-check-input" value="upi">
+                                        <label for="upi" class="form-check-label">UPI
+                                            <img src="UPI-Black.png" alt="UPI" class="img-fluid" style="width: 30px; margin-right: 10px;">
+                                            
+                                        </label>
+                                    </div>
                                     <div id="upi-fields" class="payment-fields" style="display: none;">
                                         <div class="form-group">
                                             <label for="upi-id">UPI ID</label>
                                             <input type="text" id="upi-id" name="upi-id" class="form-control">
                                         </div>
                                     </div>
+                
+                                   
                 
                                     <button type="submit" class="btn btn-primary">Proceed to Payment</button>
                                 </form>
