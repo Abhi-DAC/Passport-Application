@@ -24,7 +24,7 @@
         }
       
         .footer {
-            background-color: #cfd4da; /* Dark Gray Background */
+            background-color: #cfd4da; 
             text-align: center; 
             padding: 10px 0;
             color: black;
@@ -37,7 +37,7 @@
             
             top: 50%;
             left: 50%;
-            background-color: rgb(217, 207, 207);
+            background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(7, 7, 7, 0.5);
@@ -118,17 +118,17 @@
         <!-- Main content -->
             <div class="content flex-grow-1">
                 <div class="container">
+                    <h1 class="text-center custom-title">Register for a New User</h1>
+                    <p class="text-center text-dark">Please fill out the registration form below to create a new account.</p>
                     <form class="needs-validation" novalidate>
                         <div class="row justify-content-center">
                             <div class="col-lg-8 col-md-10">
                                 <div class="form-section active card shadow">
-                                    <h1 class="text-center custom-title">Register for a New User</h1>
-                                    <p class="text-center text-dark">Please fill out the registration form below to create a new account.</p>
                                     <h2 class="h5">Register to apply at*</h2>
                                     <div class="mb-3">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" id="cpvDelhi" name="applyAt" value="CPV Delhi">
-                                            <label class="form-check-label" for="cpvDelhi">CPV Delhi</label>
+                                            <label class="form-check-label"  for="cpvDelhi">CPV Delhi</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" id="passportOffice" name="applyAt" value="Passport Office" checked>
@@ -137,7 +137,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="passportOfficeSelect">Passport Office* (As per Present Residential Address)</label>
+                                        <label for="passportOfficeSelect" class="form-label">Passport Office* (As per Present Residential Address)</label>
                                         <select class="form-control" id="passportOfficeSelect" name="passportOffice">
                                             <option value="">----- Select -----</option>
                                             <!-- Add more options as needed -->
@@ -146,24 +146,24 @@
 
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label for="givenName">Given Name (Max 45 Characters)*</label>
+                                            <label for="givenName" class="form-label">Given Name (Max 45 Characters)*</label>
                                             <input type="text" class="form-control" id="givenName" name="givenName" maxlength="45" required>
                                             <div class="invalid-feedback">Please enter your given name.</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="surname">Surname (Max 45 Characters)</label>
+                                            <label for="surname" class="form-label">Surname (Max 45 Characters)</label>
                                             <input type="text" class="form-control" id="surname" name="surname" maxlength="45">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label for="email">E-mail Id (Max 35 Characters)*</label>
+                                            <label for="email" class="form-label">E-mail Id (Max 35 Characters)*</label>
                                             <input type="email" class="form-control" id="email" name="email" maxlength="35" required>
                                             <div class="invalid-feedback">Please enter a valid email address.</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="dob">Date of Birth (DD/MM/YYYY)*</label>
+                                            <label for="dob" class="form-label">Date of Birth (DD/MM/YYYY)*</label>
                                             <input type="text" class="form-control" id="dob" name="dob" placeholder="DD/MM/YYYY" required>
                                             <div class="invalid-feedback">Please enter your date of birth.</div>
                                         </div>
@@ -172,18 +172,18 @@
                                     <div class="mb-3">
                                         <label>Do you want your Login Id to be same as E-mail Id?</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" id="loginIdYes" name="loginIdSameAsEmail" value="Yes">
+                                            <input class="form-check-input" type="radio" id="loginIdYes" name="loginIdSameAsEmail" value="Yes" required>
                                             <label class="form-check-label" for="loginIdYes">Yes</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" id="loginIdNo" name="loginIdSameAsEmail" value="No" checked>
+                                            <input class="form-check-input" type="radio" id="loginIdNo" name="loginIdSameAsEmail" value="No" required >
                                             <label class="form-check-label" for="loginIdNo">No</label>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label for="loginId">Login Id*</label>
+                                            <label for="loginId" class="form-label">Login Id*</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="loginId" name="loginId" required>
                                                 <div class="input-group-append">
@@ -193,7 +193,7 @@
                                             <div class="invalid-feedback">Please choose a login ID.</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="password">Password*</label>
+                                            <label for="password" class="form-label">Password*</label>
                                             <input type="password" class="form-control" id="password" name="password" required>
                                             <small><a href="#">Password Policy</a></small>
                                             <div class="invalid-feedback">Please enter a password.</div>
@@ -202,12 +202,12 @@
 
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label for="confirmPassword">Confirm Password*</label>
+                                            <label for="confirmPassword" class="form-label">Confirm Password*</label>
                                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
                                             <div class="invalid-feedback">Please confirm your password.</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="hintQuestion">Hint Question*</label>
+                                            <label for="hintQuestion" class="form-label">Hint Question*</label>
                                             <select class="form-control" id="hintQuestion" name="hintQuestion" required>
                                                 <option value="">----- Select -----</option>
                                                 <!-- Add more options as needed -->
@@ -236,11 +236,34 @@
                     <div class="front ">
                         <form class="rounded-pill" action="home.html" method="get" id="employeeForm">
 
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username or Email" required>
+
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="username"
+                                    id="username"
+                                    aria-describedby="helpId"
+                                    placeholder="Username or Email"
+                                    required
+                                />
+                                <small id="helpId" class="form-text text-muted"></small>
+                            </div>
                             
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="password"
+                                    id="password"
+                                    aria-describedby="helpId"
+                                    placeholder="Password"
+                                    required
+                                />
+                                <small id="helpId" class="form-text text-muted"></small>
+                            </div>
                             
                             <a href="forgotPassword.html">Forgot Password?</a> 
                             <a href="register.html">Register</a><br><br>
