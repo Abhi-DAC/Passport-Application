@@ -5,6 +5,26 @@
             text-align: center;
             padding: 10px 0;
         }
+
+        .navbar-center {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            pointer-events: none; /* Prevent interactions blocking other elements */
+        }
+        
+        .navbar-center h2 {
+            margin: 0;
+            pointer-events: auto; /* Re-enable interactions for the h2 tag */
+            color: gold;
+        }
+
         .navbar-brand img {
             height: 2em;
             width: 1.5em;
