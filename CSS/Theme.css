@@ -39,6 +39,12 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+
+            background: linear-gradient(to bottom, 
+            #ec4903 0%,    /* Top color */
+            #fefefd 50%,   /* Middle color */
+            #03761a 100%   /* Bottom color */
+            );
         }
         p{
             color: black;
@@ -55,6 +61,12 @@
         body {
             display: flex;
             flex-direction: column;
+            background: linear-gradient(to bottom, 
+                            #ec4903 0%,    /* Top color */
+                            #fefefd 50%,   /* Middle color */
+                            #03761a 100%   /* Bottom color */
+                            );
+            width: 100%;
             min-height: 100vh; /* Ensure body takes up full height */
         }
       
