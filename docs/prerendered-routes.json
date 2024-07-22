@@ -1,0 +1,24 @@
+{
+  "routes": [
+    "/",
+    "/contact",
+    "/home",
+    "/home/contact",
+    "/home/home",
+    "/home/login",
+    "/home/register",
+    "/login",
+    "/register",
+    "/user",
+    "/user/about-us",
+    "/user/appointment",
+    "/user/contact-us",
+    "/user/FAQs",
+    "/user/fresh-application",
+    "/user/history",
+    "/user/payment",
+    "/user/privacy-policy",
+    "/user/profile",
+    "/user/t&c"
+  ]
+}
