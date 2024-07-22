@@ -1,0 +1,136 @@
+<div class="align-items-stretch d-flex w-100">
+  <div class="main d-flex flex-column min-vh-100 w-100 overflow-hidden">
+    <main class="content px-3 py-2 align-content-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 pt-5 align-content-center  d-none d-md-block position-relative">
+            <!-- <iframe class="h-100 w-100 pe-auto" src="https://lottie.host/embed/69158c84-8902-46f5-b414-7c7ec3814afe/bwcmeSx28Q.json"></iframe> -->
+            <!-- <iframe  src="https://lottie.host/embed/69158c84-8902-46f5-b414-7c7ec3814afe/bwcmeSx28Q.json"></iframe> -->
+            <img src="../../../assets/register-img.webp" class="img-fluid shadow opacity-100 " alt="Login Image"
+              style="height: 600px;">
+
+          </div>
+          <div class="col-lg-6 align-content-center mt-4">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4 fw-medium">Create an Account!</h1>
+              </div>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group row mb-2">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="form-group">
+                      <label for="firstName" class="form-label ms-2">First Name</label>
+                      <input type="text" class="form-control rounded-pill h-100" formControlName="firstName"
+                        placeholder="First Name">
+                      <span
+                        *ngIf="registerForm.get('firstName')!.errors?.['required'] && registerForm.get('firstName')!.touched"
+                        class="error-message">This field is required</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="lastName" class="form-label ms-2">Last Name</label>
+                      <input type="text" class="form-control rounded-pill h-100" formControlName="lastName"
+                        placeholder="Last Name">
+                      <span
+                        *ngIf="registerForm.get('lastName')!.errors?.['required'] && registerForm.get('lastName')!.touched"
+                        class="error-message">This field is required</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row mb-2">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="form-group">
+                      <label for="PhoneNumber" class="form-label ms-2">Phone Number</label>
+
+                      <input type="text" class="form-control rounded-pill h-100" formControlName="phoneNumber"
+                        placeholder="Phone Number">
+                      <span
+                        *ngIf="registerForm.get('phoneNumber')!.errors?.['required'] && registerForm.get('phoneNumber')!.touched"
+                        class="error-message">This field is required</span>
+                      <span
+                        *ngIf="registerForm.get('phoneNumber')!.errors?.['pattern'] && registerForm.get('phoneNumber')!.touched"
+                        class="error-message">Invalid phone number</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="office" class="ms-2 form-label">Office</label>
+
+                      <select class="form-control rounded-pill h-100" formControlName="officeRegion">
+                        <option value="" selected>Passport Office Region</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Aurangabad">Aurangabad</option>
+                        <option value="Thane">Thane</option>
+                        <option value="Nashik">Nashik</option>
+                      </select>
+                      <span
+                        *ngIf="registerForm.get('officeRegion')!.errors?.['required'] && registerForm.get('officeRegion')!.touched"
+                        class="error-message">This field is required</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mb-2">
+                  <div class="form-group">
+                    <label for="email" class="ms-2 form-label">Email</label>
+
+                    <input type="email" class="form-control rounded-pill h-100" formControlName="email"
+                      placeholder="Email Address">
+                    <span *ngIf="registerForm.get('email')!.errors?.['required'] && registerForm.get('email')!.touched"
+                      class="error-message">This field is required</span>
+                    <span *ngIf="registerForm.get('email')!.errors?.['email'] && registerForm.get('email')!.touched"
+                      class="error-message">Invalid email address</span>
+                  </div>
+                </div>
+                <div class="form-group row mb-2">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="form-group">
+                      <label for="password" class="ms-2 form-label">Password</label>
+
+                      <input type="password" class="form-control rounded-pill h-100" formControlName="password"
+                        placeholder="Password">
+                      <span
+                        *ngIf="registerForm.get('password')!.errors?.['required'] && registerForm.get('password')!.touched"
+                        class="error-message">This field is required</span>
+                      <span
+                        *ngIf="registerForm.get('password')!.errors?.['minlength'] && registerForm.get('password')!.touched"
+                        class="error-message">Password must be at least 6 characters long</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <div class="form-group">
+                      <label for="password" class="ms-2 form-label">Confirm Password</label>
+
+                      <input type="password" class="form-control rounded-pill h-100" formControlName="confirmPassword"
+                        placeholder="Confirm Password">
+                      <span
+                        *ngIf="registerForm.get('confirmPassword')!.errors?.['required'] && registerForm.get('confirmPassword')!.touched"
+                        class="error-message">This field is required</span>
+                      <span *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')!.touched"
+                        class="error-message">Passwords do not match</span>
+                    </div>
+                  </div>
+                  <div class="terms mb-2">
+                    <input type="checkbox" id="terms" name="terms">
+                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                  </div>
+                </div>
+                <button id="register-btn" class="btn w-100 rounded-pill h-100 btn-block" type="submit">Register
+                  Account</button>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" routerLink="/forgot-password">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" routerLink="/login">Already have an account? Login!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

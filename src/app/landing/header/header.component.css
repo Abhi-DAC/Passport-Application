@@ -1,0 +1,18 @@
+header {
+  background: linear-gradient(to right,
+      #dbeaf8,
+      #bcbdbe);
+  padding: 1px 0;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #0056b3;
+}

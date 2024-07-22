@@ -1,0 +1,72 @@
+
+#sidebar {
+    /* background: linear-gradient(
+        to bottom,
+        #FAAB2D,
+        #e7e8e8
+    ); */
+    background: linear-gradient(
+        to bottom,
+        #373636,
+        #282727
+        
+    );
+    /* background-color: #fff; */
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 100%;
+    /* margin-top: 50px; */
+    border: #4b4949;
+    transition: all 0.35s ease-in-out;
+    /* box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.5); */
+    box-shadow: 
+    10px 10px 60px 20px #000000;
+    z-index: 1111;
+}
+
+
+.sidebar-nav {
+    padding: 0;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #b5b4b4;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    font-weight: 100px;
+    text-decoration: none;
+}
+
+
+a:hover, a:focus {
+color: rgb(4, 4, 4);
+text-decoration: none;
+transition: all 0.3s;
+background: #f7eebb
+}
+
+
+
+/* Color Theme Swatches in Hex */
+.orange-1-hex { color: #DEFC92; }
+.orange-2-hex { color: #DBD87E; }
+.orange-3-hex { color: #F0E297; }
+.orange-4-hex { color: #DBBC67; }
+.orange-5-hex { color: #FAAB2D; }
+
+/* Color Theme Swatches in RGBA */
+.orange-1-rgba { color: rgba(221, 251, 145, 1); }
+.orange-2-rgba { color: rgba(219, 216, 126, 1); }
+.orange-3-rgba { color: rgba(239, 226, 151, 1); }
+.orange-4-rgba { color: rgba(219, 188, 103, 1); }
+.orange-5-rgba { color: rgba(249, 170, 45, 1); }
+
+/* Color Theme Swatches in HSLA */
+.orange-1-hsla { color: hsla(76, 94, 78, 1); }
+.orange-2-hsla { color: hsla(58, 56, 67, 1); }
+.orange-3-hsla { color: hsla(50, 74, 76, 1); }
+.orange-4-hsla { color: hsla(43, 61, 63, 1); }
+.orange-5-hsla { color: hsla(36, 95, 57, 1); }
+

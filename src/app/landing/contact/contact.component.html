@@ -1,0 +1,80 @@
+<div class="align-items-stretch d-flex w-100">
+  <div class="main d-flex flex-column min-vh-100 w-100 overflow-hidden">
+    <main class="content h-100  align-content-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 pt-5 align-content-center  d-none d-md-block position-relative">
+            <img src="../../../assets/contact-us-img.webp" class="img-fluid shadow opacity-100 " alt="contact us"
+              style="height: 600px;">
+            <div class="ps-5 contact-details position-absolute text-white w-100 top-50 start-50 translate-middle p-3"
+              style="background: rgba(0, 0, 0, 0.7);">
+              <h3>Contact Details</h3>
+              <p><strong>Address:</strong> 123 Passport Lane, New Delhi, India</p>
+              <p><strong>Phone:</strong> +91-123-456-7890</p>
+              <p><strong>Email:</strong> support&#64;passportauthority.in</p>
+              <p><strong>Office Hours:</strong></p>
+              <ul class="list-unstyled">
+                <li>Monday to Friday: 9:00 AM - 5:00 PM</li>
+                <li>Saturday: 9:00 AM - 1:00 PM</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6 align-content-center mt-4">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4 fw-medium ">Contact Us / Feedback</h1>
+              </div>
+              <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+                <!-- Name -->
+                <div class="form-group mb-3">
+                  <label class="form-label" for="name">Name</label>
+                  <input type="text" class="form-control rounded-pill h-100" id="name" formControlName="name"
+                    placeholder="Name">
+                  <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                    class="invalid-feedback d-block">
+                    Please provide your name.
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group mb-3">
+                  <label class="form-label" for="email">Email address</label>
+                  <input type="email" class="form-control rounded-pill h-100" id="email" formControlName="email"
+                    placeholder="Email">
+                  <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                    class="invalid-feedback d-block">
+                    Please provide a valid email address.
+                  </div>
+                </div>
+                <!-- Type (Feedback/Complaint) -->
+                <div class="form-group mb-3">
+                  <label class="form-label" for="type">Type</label>
+                  <select class="form-control rounded-pill h-100" id="type" formControlName="type">
+                    <option value="" disabled>Select Type</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="complaint">Complaint</option>
+                  </select>
+                  <div *ngIf="contactForm.get('type')?.invalid && contactForm.get('type')?.touched"
+                    class="invalid-feedback d-block">
+                    Please select a type.
+                  </div>
+                </div>
+                <!-- Message -->
+                <div class="form-group mb-3">
+                  <label class="form-label" for="message">Message</label>
+                  <textarea class="form-control rounded-4 h-100" id="message" formControlName="message" rows="5"
+                    placeholder="Please enter your message."></textarea>
+                  <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                    class="invalid-feedback d-block">
+                    Please enter your message.
+                  </div>
+                </div>
+                <button id="submit-btn" type="submit" class="btn  rounded-pill ">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.invalid-feedback {
+    display: block;
+    color: red;
+  }
+  
+
+
+.scrollspy {
+    position: relative;
+    height:68vh;
+    overflow-y: auto;
+    padding: 15px;
+
+}

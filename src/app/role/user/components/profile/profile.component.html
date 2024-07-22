@@ -1,0 +1,106 @@
+<main class="content px-3 py-2 h-100">
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 fw-semibold">Profile</h1>
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-lg-2 mt-5">
+                    <img src="assets/profile.png" class="img-fluid" alt="Profile Image">
+                </div>
+                <div class="col-lg-10 mt-0">
+                    <div class="card bg-transparent border-0">
+                        <div class="card-header bg-transparent pb-0">
+                            <h2>Personal Info</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="justify-content-between">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p class="fw-semibold">Name: </p>
+                                        <p class="fw-semibold">Email: </p>
+                                        <p class="fw-semibold">Phone:</p>
+                                        <p class="fw-semibold">Office Region:</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p><span id="profileName">Abhisehk</span></p>
+                                        <p><span id="profileEmail">shindeabgmail.com</span></p>
+                                        <p><span id="profilePhone">8764956960</span></p>
+                                        <p><span id="profileAddress">Mumbai</span></p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <button class="btn btn-primary float-end" onclick="editProfile()">Edit
+                                Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="fw-bold">Application Information</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="fw-semibold">Application ID:</p>
+                                    <p class="fw-semibold">Application Type:</p>
+                                    <p class="fw-semibold">Number of Pages:</p>
+                                    <p class="fw-semibold">Status:</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p><span id="appId">APP123456789</span></p>
+                                    <p><span id="appType">Tatkal</span></p>
+                                    <p><span id="numPages">36</span></p>
+                                    <p><span id="appStatus">Pending</span></p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h4 class="fw-bold">Application Summary</h4>
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="fw-semibold">Pending Applications:</p>
+                                    <p class="fw-semibold">Approved Applications:</p>
+                                    <p class="fw-semibold">Completed Applications:</p>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <p><span id="pendingCount"></span></p>
+                                    <p><span id="approvedCount"></span></p>
+                                    <p><span id="completedCount"></span></p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

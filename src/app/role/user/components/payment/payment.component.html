@@ -1,0 +1,133 @@
+<main class="content px-3 py-2 h-100">
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 fw-semibold">Application Fee</h1>
+      <div>
+        <div class="card border-0 bg-transparent">
+          <div class="card-header bg-transparent py-3">
+            <h6 class="m-0 font-weight-bold text-light fs-3"></h6>
+          </div>
+          <div class="card-body rounded-2 bg-light">
+            <div data-bs-spy="scroll" data-bs-target="#list" data-bs-offset="0" class="scrollspy">
+              <div class="container-fluid align-items-center">
+                <div class="row" style="height: 100%;">
+                  <div class="col-md-4">
+                    <!-- Select Application ID -->
+                    <div class="form-group">
+                      <label for="applicationSelect">Select Application ID:</label>
+                      <select id="applicationSelect" class="form-control" formControlName="applicationId" (change)="onApplicationSelectChange($event)">
+                        <option value="">Select an application...</option>
+                      </select>
+                      <div *ngIf="paymentForm.get('applicationId')?.invalid && paymentForm.get('applicationId')?.touched" class="invalid-feedback">
+                        Please select an application ID.
+                      </div>
+                    </div>
+                    <!-- Amount Details with dark text color -->
+                    <div class="flex-column flex-grow-1 pt-3 mb-0 text-secondary" id="amountDetails">
+                      <h5 class="fw-semibold mt-0">Amount Details</h5>
+                      <hr>
+                      <div class="d-flex justify-content-between">
+                        <div>Application Type:</div>
+                        <div id="appType" class="px-5"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div>Number of pages:</div>
+                        <div id="pages" class="px-5"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div>Platform Fee:</div>
+                        <div class="px-5">$10.00</div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div>Application Fee:</div>
+                        <div id="appFee" class="px-5"></div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h4>Total:</h4>
+                        </div>
+                        <div id="totalFee" class="px-5"></div>
+                      </div>
+                      <div>
+                        <img src="/assets/online_payments.svg" class="img-fluid" alt="online payment">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" novalidate>
+                      <br>
+                      <!-- Payment Method Selection -->
+                      <h5 class="fw-semibold">Select Payment Method</h5>
+                      <hr>
+                      <div class="form-group form-check">
+                        <input type="radio" id="credit-card" formControlName="paymentMethod" class="form-check-input" value="credit-card" required>
+                        <label for="credit-card" class="form-check-label">Credit/Debit Card
+                          <img src="/assets/Credit-Card-Transparent.png" alt="Credit Card" class="img-fluid" style="width: 3em; margin-right: 10px;">
+                        </label>
+                      </div>
+                      <div id="credit-card-fields" class="payment-fields" style="display: none;">
+                        <div class="form-group">
+                          <label for="cc-number">Card Number</label>
+                          <input type="text" id="cc-number" formControlName="ccNumber" placeholder="Card Number" class="form-control">
+                          <div *ngIf="paymentForm.get('ccNumber')?.invalid && paymentForm.get('ccNumber')?.touched" class="invalid-feedback">
+                            Invalid credit card number.
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="cc-expiry">Expiry Date</label>
+                          <input type="text" id="cc-expiry" formControlName="ccExpiry" placeholder="MM/YY" class="form-control">
+                          <div *ngIf="paymentForm.get('ccExpiry')?.invalid && paymentForm.get('ccExpiry')?.touched" class="invalid-feedback">
+                            Invalid expiry date.
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="cc-cvc">CVC</label>
+                          <input type="text" id="cc-cvc" formControlName="ccCvc" placeholder="CVC" class="form-control">
+                          <div *ngIf="paymentForm.get('ccCvc')?.invalid && paymentForm.get('ccCvc')?.touched" class="invalid-feedback">
+                            Invalid CVC.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="radio" id="paypal" formControlName="paymentMethod" class="form-check-input" value="paypal">
+                        <label for="paypal" class="form-check-label">PayPal
+                          <img src="/assets/PayPal-Logo-PNG-Picture.png" alt="PayPal" class="img-fluid" style="width: 3em; margin-right: 10px;">
+                        </label>
+                      </div>
+                      <div id="paypal-fields" class="payment-fields" style="display: none;">
+                        <div class="form-group">
+                          <label for="paypal-email">PayPal Email</label>
+                          <input type="email" id="paypal-email" formControlName="paypalEmail" placeholder="PayPal Email" class="form-control">
+                          <div *ngIf="paymentForm.get('paypalEmail')?.invalid && paymentForm.get('paypalEmail')?.touched" class="invalid-feedback">
+                            Invalid PayPal email.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="radio" id="upi" formControlName="paymentMethod" class="form-check-input" value="upi">
+                        <label for="upi" class="form-check-label">UPI
+                          <img src="/assets/UPI-Black.png" alt="UPI" class="img-fluid" style="width: 30px; margin-right: 10px;">
+                        </label>
+                      </div>
+                      <div id="upi-fields" class="payment-fields" style="display: none;">
+                        <div class="form-group">
+                          <label for="upi-id">UPI ID</label>
+                          <input type="text" id="upi-id" formControlName="upiId" placeholder="UPI-id" class="form-control">
+                          <div *ngIf="paymentForm.get('upiId')?.invalid && paymentForm.get('upiId')?.touched" class="invalid-feedback">
+                            Invalid UPI ID.
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

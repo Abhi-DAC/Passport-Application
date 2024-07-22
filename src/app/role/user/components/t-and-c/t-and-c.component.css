@@ -1,0 +1,21 @@
+.card-header{
+    
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: transparent;
+
+}
+
+/* main{
+    margin-top: 0%;
+    background-color:#daab5f;
+} */
+
+.scrollspy {
+    position: relative;
+    height:67vh;
+    overflow-y: auto;
+    padding: 15px;
+
+}

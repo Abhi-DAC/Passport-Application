@@ -1,0 +1,56 @@
+.hero-section img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+  }
+  
+  .hero-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+  }
+  
+  .hero-section img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .overlay-text h1 {
+    font-size: 2.5rem;
+    margin-top: 20px;
+  }
+  
+  .overlay-text p {
+    font-size: 1.25rem;
+  }
+  
+  #hero-apply{
+   background-color: #e9c181;
+    border-color: #ffffff;
+     border-width: 4px;
+     color: white;
+  }
+
+  #hero-status{
+    background-color: #e8b45f;
+     border-color: #ffffff;
+      border-width: 4px;
+      color: white;
+   }
+
+   #hero-status:hover, #hero-apply:hover{
+    color: black;
+  }

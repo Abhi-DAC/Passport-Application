@@ -1,0 +1,25 @@
+.scrollspy {
+    position: relative;
+    height: 60vh;
+    /* Set a specific height for the scrollable content */
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    justify-content: center;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .invalid-feedback {
+    color: red;
+  }
+  
+  .custom-separator {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  

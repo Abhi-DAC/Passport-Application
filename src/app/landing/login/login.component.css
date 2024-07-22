@@ -1,0 +1,16 @@
+.error-message {
+    margin-left: 1em;
+    color: red;
+    font-size: 0.9em;
+}
+
+#login-btn{
+    background-color: #e8b45f;
+     border-color: #ffffff;
+      border-width: 4px;
+      color: white;
+}
+
+#login-btn:hover{
+    color: black;
+  }

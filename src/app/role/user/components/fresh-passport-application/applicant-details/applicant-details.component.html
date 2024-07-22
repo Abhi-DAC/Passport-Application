@@ -1,0 +1,319 @@
+<form [formGroup]="applicantDetailsForm" (ngSubmit)="onNext()">
+    <fieldset class="p-3">
+        <legend class="text-center"><b>Applicant Details</b></legend>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="given_name" class="form-label"><b>Given Name:</b> <em class="form-text text-muted">[Given
+                        Name means First name followed by Middle name (If any)(Initials not allowed)]</em></label>
+                <input type="text" class="form-control w-75" id="given_name" formControlName="givenName"
+                    placeholder="Enter your given name" />
+
+                <div *ngIf="applicantDetailsForm.get('givenName')!.touched && applicantDetailsForm.get('givenName')!.invalid"
+                    class="text-danger">
+                    Please enter a valid given name.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="surname" class="form-label"><b>Surname:</b></label>
+                <input type="text" class="form-control w-75" id="surname" formControlName="surname"
+                    placeholder="Enter your surname" />
+                <div *ngIf="applicantDetailsForm.get('surname')!.touched && applicantDetailsForm.get('surname')!.invalid"
+                    class="text-danger">
+                    Please enter a valid surname.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label"><b>Are you known by any other names (aliases)?</b></label>
+                <div class="d-flex mb-2">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="knownByOtherNames" id="known_yes"
+                            value="yes" />
+                        <label class="form-check-label" for="known_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="knownByOtherNames" id="known_no"
+                            value="no" />
+                        <label class="form-check-label" for="known_no">No</label>
+                    </div>
+                </div>
+                <div *ngIf="applicantDetailsForm.get('knownByOtherNames')!.value === 'yes'">
+                    <em class="form-text text-muted">If yes, please provide the aliases :</em>
+                    <input type="text" class="form-control w-75" id="aliases" formControlName="aliases"
+                        placeholder="Enter aliases" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Have you ever changed your name?</b></label>
+                <div class="d-flex mb-2">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="changedName" id="changed_yes"
+                            value="yes" />
+                        <label class="form-check-label" for="changed_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="changedName" id="changed_no"
+                            value="no" />
+                        <label class="form-check-label" for="changed_no">No</label>
+                    </div>
+                </div>
+                <div *ngIf="applicantDetailsForm.get('changedName')!.value === 'yes'">
+                    <em class="form-text text-muted">If yes, please provide the previous name :</em>
+                    <input type="text" class="form-control w-75" id="previous_name" formControlName="previousName"
+                        placeholder="Enter previous name" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="dob" class="form-label"><b>Date of Birth:</b></label>
+                <input type="date" class="form-control w-75" id="dob" formControlName="dob"
+                    placeholder="Select date of birth" />
+                <div *ngIf="applicantDetailsForm.get('dob')!.touched && applicantDetailsForm.get('dob')!.invalid"
+                    class="text-danger">
+                    Please select a valid date of birth.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="place_of_birth" class="form-label"><b>Place of Birth (Village or Town or City):</b></label>
+                <input type="text" class="form-control w-75" id="place_of_birth" formControlName="placeOfBirth"
+                    placeholder="Enter place of birth" />
+                <div *ngIf="applicantDetailsForm.get('placeOfBirth')!.touched && applicantDetailsForm.get('placeOfBirth')!.invalid"
+                    class="text-danger">
+                    Please enter a valid place of birth.
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="region_country" class="form-label"><b>Region/Country (If born abroad):</b></label>
+                <input type="text" class="form-control w-75" id="region_country" formControlName="regionCountry"
+                    placeholder="Enter region/country" list="regionCountryOptions" />
+                <datalist id="regionCountryOptions">
+                    <option value="Undivided India"></option>
+                    <option value="India"></option>
+                </datalist>
+                <div *ngIf="applicantDetailsForm.get('regionCountry')?.touched && applicantDetailsForm.get('regionCountry')?.invalid"
+                    class="text-danger">
+                    Please enter a valid region or country.
+                </div>
+                <em class="form-text text-muted">If born before 15/08/1947 in a place now in Pakistan or Bangladesh,
+                    write "Undivided India"</em>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><b>Gender:</b></label>
+                <div class="d-flex mb-2">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="male" value="male" />
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="female"
+                            value="female" />
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="gender" id="transgender"
+                            value="transgender" />
+                        <label class="form-check-label" for="transgender">Transgender</label>
+                    </div>
+                </div>
+                <div *ngIf="applicantDetailsForm.get('gender')!.touched && applicantDetailsForm.get('gender')!.invalid"
+                    class="text-danger">
+                    Please select a gender.
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row mb-3" *ngIf="applicantDetailsForm.get('regionCountry')?.value === 'India'">
+            <div class="col-md-6">
+                <label for="state" class="form-label"><b>State/UT (If born in India):</b></label>
+                <select class="form-select form-control w-75" id="state" formControlName="state">
+                    <option value="" disabled selected>Select State</option>
+                    <!-- Add state options here -->
+                </select>
+                <div *ngIf="applicantDetailsForm.get('state')!.touched && applicantDetailsForm.get('state')!.invalid"
+                    class="text-danger">
+                    Please select a state.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="district" class="form-label"><b>District (If born in India):</b></label>
+                <select class="form-select form-control w-75" id="district" formControlName="district">
+                    <option value="" disabled selected>Select State First</option>
+                    <!-- Add district options here -->
+                </select>
+                <div *ngIf="applicantDetailsForm.get('district')!.touched && applicantDetailsForm.get('district')!.invalid"
+                    class="text-danger">
+                    Please select a district.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="marital_status" class="form-label"><b>Marital Status:</b></label>
+                <select class="form-select form-control w-75" id="marital_status" formControlName="maritalStatus">
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widow_widower">Widow/Widower</option>
+                    <option value="separated">Separated</option>
+                </select>
+                <div *ngIf="applicantDetailsForm.get('maritalStatus')!.touched && applicantDetailsForm.get('maritalStatus')!.invalid"
+                    class="text-danger">
+                    Please select a marital status.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="citizenship" class="form-label"><b>Citizenship of India by:</b></label>
+                <select class="form-select form-control w-75" id="citizenship" formControlName="citizenship">
+                    <option value="birth">Birth</option>
+                    <option value="descent">Descent</option>
+                    <option value="registration_naturalization">Registration/Naturalization</option>
+                </select>
+                <div *ngIf="applicantDetailsForm.get('citizenship')!.touched && applicantDetailsForm.get('citizenship')!.invalid"
+                    class="text-danger">
+                    Please select a citizenship type.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="pan" class="form-label"><b>PAN (If available):</b></label>
+                <input type="text" class="form-control w-75" id="pan" formControlName="pan" placeholder="Enter PAN" />
+                <div *ngIf="applicantDetailsForm.get('pan')!.touched && applicantDetailsForm.get('pan')!.invalid"
+                    class="text-danger">
+                    Please enter a valid PAN.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="voter_id" class="form-label"><b>Voter ID (If available):</b></label>
+                <input type="text" class="form-control w-75" id="voter_id" formControlName="voterId"
+                    placeholder="Enter Voter ID" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="employment_type" class="form-label"><b>Employment Type:</b></label>
+                <select class="form-select form-control w-75" id="employment_type" formControlName="employmentType">
+                    <option value="psu">PSU</option>
+                    <option value="government">Government</option>
+                    <option value="statutory_body">Statutory Body</option>
+                    <option value="retired_government_servant">Retired Government Servant</option>
+                    <option value="self_employed">Self Employed</option>
+                    <option value="private">Private</option>
+                    <option value="homemaker">Homemaker</option>
+                    <option value="not_employed">Not Employed</option>
+                    <option value="retired_private_service">Retired-Private Service</option>
+                    <option value="student">Student</option>
+                    <option value="others">Others</option>
+                    <option value="x">Owners, Partners & Directors of companies which are members of CII, FICCI &
+                        ASSOCHAM</option>
+                </select>
+                <div *ngIf="applicantDetailsForm.get('employmentType')!.touched && applicantDetailsForm.get('employmentType')!.invalid"
+                    class="text-danger">
+                    Please select an employment type.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="organization_name" class="form-label"><b>If employed in Government/ Statutory Body/ PSU,
+                        specify organization name:</b></label>
+                <input type="text" class="form-control w-75" id="organization_name" formControlName="organizationName"
+                    placeholder="Enter organization name" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label"><b>Is either of your parent (in case of minor)/ spouse, a government
+                        servant?</b></label>
+                <div class="d-flex mb-2">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="parentSpouseGovernmentServant"
+                            id="parent_yes" value="yes" />
+                        <label class="form-check-label" for="parent_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="parentSpouseGovernmentServant"
+                            id="parent_no" value="no" />
+                        <label class="form-check-label" for="parent_no">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="education" class="form-label"><b>Educational Qualification:</b></label>
+                <select class="form-select form-control w-75" id="education" formControlName="education">
+                    <option value="7th_pass_or_less">7th pass or less</option>
+                    <option value="between_8th_and_9th_standard">Between 8th and 9th Standard</option>
+                    <option value="10th_pass_and_above">10th pass and above</option>
+                    <option value="graduate_and_above">Graduate and above</option>
+                </select>
+                <div *ngIf="applicantDetailsForm.get('education')!.touched && applicantDetailsForm.get('education')!.invalid"
+                    class="text-danger">
+                    Please select an educational qualification.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label"><b>Are you eligible for Non-ECR category?</b></label>
+                <div class="d-flex mb-2">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" formControlName="nonEcr" id="non_ecr_yes"
+                            value="yes" />
+                        <label class="form-check-label" for="non_ecr_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="nonEcr" id="non_ecr_no"
+                            value="no" />
+                        <label class="form-check-label" for="non_ecr_no">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="distinguishing_mark" class="form-label"><b>Visible Distinguishing Mark:</b></label>
+                <input type="text" class="form-control w-75" id="distinguishing_mark"
+                    formControlName="distinguishingMark" placeholder="Enter distinguishing mark" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="aadhaar" class="form-label"><b>Aadhaar Number:</b></label>
+                <input type="text" class="form-control w-75" id="aadhaar" formControlName="aadhaar"
+                    placeholder="Enter Aadhaar number" />
+                <div *ngIf="applicantDetailsForm.get('aadhaar')!.touched && applicantDetailsForm.get('aadhaar')!.invalid"
+                    class="text-danger">
+                    <small *ngIf="applicantDetailsForm.get('aadhaar')!.errors?.['pattern']">Invalid Aadhaar number
+                        format.</small>
+                    <small *ngIf="applicantDetailsForm.get('aadhaar')!.errors?.['required'] "> Aadhaar number
+                        required.</small>
+
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex my-5">
+            <button id="saveDraftButton2" class="btn btn-warning me-5" type="button" (click)="onSaveDraft()">Save
+                Draft</button>
+            <button id="nextButton2" class="btn btn-primary" type="submit">Next</button>
+        </div>
+    </fieldset>
+</form>

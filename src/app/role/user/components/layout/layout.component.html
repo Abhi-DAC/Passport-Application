@@ -1,0 +1,17 @@
+<div class="d-flex min-vh-100 min-vw-100">
+    <!-- Sidebar -->
+    <app-sidebar  [ngClass]="isCollapsed?  'collapsed' : ''"></app-sidebar>
+    <!-- Navbar -->
+    <section class="main flex-grow-1 overflow-hidden">
+      <app-header [(data)]="isCollapsed" class="w-100"></app-header>
+  
+      <div class="container-fluid h-100 g-0 ">
+        <!-- Page Heading -->
+  
+        <!-- Main Content -->
+        <router-outlet></router-outlet>
+  
+      </div>
+    </section>
+  
+  </div>

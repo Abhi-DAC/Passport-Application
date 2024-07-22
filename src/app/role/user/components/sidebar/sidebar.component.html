@@ -1,0 +1,94 @@
+<aside id="sidebar" class="h-100">
+    <div class="px-3 px-lg-4 pt-3 text-center flex-column">
+      <div><img src="/assets/logo.png" class="img-fluid h-25 w-25" alt="Logo"></div>
+      <a  class="fs-4 fw-bold text-decoration-none" style="color: gold;">Passport Seva</a>
+    </div>
+    <!-- Sidebar Navigation -->
+    <ul class="sidebar-nav pt-0">
+      <hr class="w-75 text-light ms-4 mb-0">
+      <li class="sidebar-header text-light ps-3">Menu</li>
+      <li class="sidebar-item">
+        <a routerLink="./profile" class="sidebar-link">
+          <i class="fa-solid fa-regular fa-user pe-2"></i>
+          Profile
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link"  data-bs-toggle="collapse" href="#pagesCollapse"
+          aria-expanded="false" aria-controls="pagesCollapse">
+          <i class="fa-regular fa-file-lines pe-2"></i>
+          Apply Here
+        </a>
+        <div id="pagesCollapse" class="collapse">
+          <ul class="sidebar-dropdown list-unstyled">
+            <li class="sidebar-item">
+              <a routerLink="./fresh-application" class="sidebar-link ps-5"><i class="fa-solid fa-passport pe-2"></i><small>Fresh Application</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="./renewal-application" class="sidebar-link ps-5"><i class="fa-solid fa-rotate pe-2"></i><small>Renewal Application</small></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="sidebar-item">
+        <a routerLink="./history" class="sidebar-link">
+          <i class="fa-solid fa-scroll pe-2"></i>
+          Application History
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a routerLink="./appointment" class="sidebar-link">
+          <i class="fa-solid fa-calendar-check pe-2"></i>
+          Appointment Date
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" data-bs-toggle="collapse" href="#dashboardCollapse"
+          aria-expanded="false" aria-controls="dashboardCollapse">
+          <i class="fa-solid fa-indian-rupee-sign pe-2"></i>
+          Transaction
+        </a>
+        <div id="dashboardCollapse" class="collapse">
+          <ul class="sidebar-dropdown list-unstyled">
+            <li class="sidebar-item">
+              <a routerLink="./payment" class="sidebar-link ps-5"><i class="fa-solid fa-credit-card pe-2"></i><small>Application Fee</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="#" class="sidebar-link ps-5"><i class="fa-solid fa-scroll pe-2"></i><small>Transaction History</small></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" data-bs-toggle="collapse" href="" data-bs-target="#authCollapse"
+          aria-expanded="false" aria-controls="authCollapse">
+          <i class="fa-solid fa-handshake-angle"></i>
+          Help
+        </a>
+        <div id="authCollapse" class="collapse">
+          <ul class="sidebar-dropdown list-unstyled">
+            <li class="sidebar-item">
+              <a routerLink="./FAQs" class="sidebar-link ps-5"> <i class="fas fa-question pe-2"></i><small>FAQ's</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="./about-us" class="sidebar-link ps-5"><i class="fa-solid fa-address-card pe-2"></i><small>About Us</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="./contact-us" class="sidebar-link ps-5"><i class="fa-solid fa-comment pe-2"></i><small>Contact/Feedback</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="./t&c" class="sidebar-link ps-5"><i class="fa-solid fa-file-pen pe-2"></i><small>Terms & Conditions</small></a>
+            </li>
+            <li class="sidebar-item">
+              <a routerLink="./privacy-policy" class="sidebar-link ps-5"><i class="fa-solid fa-book pe-2"></i><small>Privacy Policy</small></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </aside>
+  
+
+
+
+  

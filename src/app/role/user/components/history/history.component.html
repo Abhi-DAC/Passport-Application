@@ -1,0 +1,79 @@
+<main class="content px-3 py-2 h-100">
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 fw-semibold">Application History</h1>
+      <div>
+        <div class="card border-0 bg-transparent">
+          <div class="card-header bg-transparent">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id=""
+                    aria-describedby="helpId"
+                    placeholder="Search"
+                  />
+        
+                </div>
+                
+              </div>
+              <div class="col-md-6 col-sm-12 mt-2 mt-md-0
+              ">
+            </div>
+
+            </div>
+          </div>
+          <div class="card-body rounded-2 bg-light">
+            <div data-bs-spy="scroll" data-bs-target="#list" data-bs-offset="0" class="scrollspy">
+              <div class="table-responsive">
+                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Type</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Rows will be inserted here by Angular -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="no-pending-applications" class="alert alert-info" style="display: none;">
+                No pending applications found.
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="applicationDetailsModal" tabindex="-1" role="dialog"
+                aria-labelledby="applicationDetailsModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="applicationDetailsModalLabel">Application Details</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p><strong>ID:</strong> <span id="modalApplicationId"></span></p>
+                      <p><strong>Type:</strong> <span id="modalApplicationType"></span></p>
+                      <p><strong>Date:</strong> <span id="modalApplicationDate"></span></p>
+                      <p><strong>Status:</strong> <span id="modalApplicationStatus"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
